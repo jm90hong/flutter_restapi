@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // TODO: implement initState
     super.initState();
 
-    Provider.of<TodoProvider>(context,listen: false).getTodoFromServer();
+    Provider.of<TodoProvider>(context,listen: false).getTodoFromServer_vo();
 
 
     
@@ -49,10 +49,10 @@ class _HomeScreenState extends State<HomeScreen> {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('${todoProvider.id}',style: ts,),
-              Text('${todoProvider.userId}',style: ts,),
-              Text('${todoProvider.title}',style: ts,),
-              Text('${todoProvider.completed}',style: ts,)
+              Text('${todoProvider.todo.id}',style: ts,),
+              Text('${todoProvider.todo.userId}',style: ts,),
+              Text('${todoProvider.todo.title}',style: ts,),
+              Text('${todoProvider.todo.completed}',style: ts,)
 
             ],
           );
