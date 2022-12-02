@@ -18,9 +18,14 @@ class _ListScreenState extends State<ListScreen> {
     Provider.of<TodoProvider>(context,listen: false).getTodoListFromServer();
   }
 
-  Widget buildTodo(){
+  Widget buildTodo({
+      required int userId,
+      required String title,
+      required bool isCompleted
+    }){
+
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       color: Colors.white,
       width: double.infinity,
       height: 80,
@@ -32,11 +37,14 @@ class _ListScreenState extends State<ListScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('타이틀'),
-              Text('내용')
+              Text('$userId'),
+              Container(
+                  width: 300,
+                  child: Text(title,overflow: TextOverflow.ellipsis,)
+              )
             ],
           ),
-          Text('완료')
+          isCompleted ? Text('완료') : Text('미완료')
         ],
       )
     );
@@ -52,12 +60,17 @@ class _ListScreenState extends State<ListScreen> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        child: Column(
-          children: [
-            buildTodo(),
-            buildTodo()
-          ],
-        ),
+        child: SingleChildScrollView(
+          child: Consumer<TodoProvider>(builder: (context, todoProvider, child){
+            return Column(
+              children: todoProvider.todoList.map((e) => buildTodo(
+                title: e.title,
+                userId: e.userId,
+                isCompleted: e.completed
+              )).toList(),
+            );
+          },),
+        )
       ),
     );
   }
