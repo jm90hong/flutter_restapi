@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_restapi/provider/todo_provider.dart';
 import 'package:flutter_restapi/screen/home_screen.dart';
+import 'package:flutter_restapi/screen/list_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: HomeScreen()
+        home: ListScreen()
       ),
     );
   }
