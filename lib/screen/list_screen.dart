@@ -37,14 +37,16 @@ class _ListScreenState extends State<ListScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('$userId'),
+              Text('회원 $userId 의 TODO',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
               Container(
                   width: 300,
                   child: Text(title,overflow: TextOverflow.ellipsis,)
               )
             ],
           ),
-          isCompleted ? Text('완료') : Text('미완료')
+          isCompleted ?
+            const Text('완료',style:TextStyle(color: Colors.blue) ,) :
+            const Text('미완료',style:TextStyle(color: Colors.red) )
         ],
       )
     );
@@ -62,14 +64,15 @@ class _ListScreenState extends State<ListScreen> {
         height: double.infinity,
         child: SingleChildScrollView(
           child: Consumer<TodoProvider>(builder: (context, todoProvider, child){
-            return Column(
-              children: todoProvider.todoList.map((e) => buildTodo(
-                title: e.title,
-                userId: e.userId,
-                isCompleted: e.completed
-              )).toList(),
-            );
-          },),
+              return Column(
+                children: todoProvider.todoList.map((e) => buildTodo(
+                  title: e.title,
+                  userId: e.userId,
+                  isCompleted: e.completed
+                )).toList(),
+              );
+            },
+          ),
         )
       ),
     );
