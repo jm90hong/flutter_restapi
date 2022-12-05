@@ -1,9 +1,15 @@
-class Todo {
+
+
+
+import 'package:flutter/material.dart';
+
+class Todo extends ChangeNotifier{
 
   int id=0;
   int userId=0;
   String title='';
   bool completed=false;
+
 
 
   Todo({
@@ -14,6 +20,7 @@ class Todo {
   });
 
 
+
   factory Todo.fromJson(Map<String, dynamic> map){
     return Todo(
       id: map['id'],
@@ -22,5 +29,6 @@ class Todo {
       completed: map['completed']
     );
   }
+
 
 }

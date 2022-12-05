@@ -26,11 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
-    Provider.of<TodoProvider>(context,listen: false).getTodoFromServer_vo();
-
-
-    
+    Provider.of<TodoProvider>(context,listen: false).getTodoFromServer();
   }
 
   @override
@@ -46,17 +42,17 @@ class _HomeScreenState extends State<HomeScreen> {
         width: double.infinity,
         height: double.infinity,
         child: Consumer<TodoProvider>(builder: (context,todoProvider,child){
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('${todoProvider.todo.id}',style: ts,),
-              Text('${todoProvider.todo.userId}',style: ts,),
-              Text('${todoProvider.todo.title}',style: ts,),
-              Text('${todoProvider.todo.completed}',style: ts,)
-
-            ],
-          );
-        },)
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('${todoProvider.todo.id}',style: ts,),
+                Text('${todoProvider.todo.userId}',style: ts,),
+                Text('${todoProvider.todo.title}',style: ts,),
+                Text('${todoProvider.todo.completed}',style: ts,)
+              ],
+            );
+          },
+        )
       ),
     );
   }
